@@ -6,13 +6,21 @@ let checkpointsService = require('./staticCheckpoints');
 
 let calculateDistanceWithRssi = rssi => {
   var txPower = -59; // hard coded power value. Usually ranges between -59 to -65
+
   if (rssi == 0) {
+  
     return -1.0;
   }
+  
+
   var ratio = rssi * 1.0 / txPower;
+  
   if (ratio < 1.0) {
+  
     return Math.pow(ratio,10);
+  
   } else {
+  
     var distance = (0.89976) * Math.pow(ratio, 7.7095) + 0.111;
     return distance;
   }
@@ -42,12 +50,20 @@ let transformCheckpoint = (checkpoint) => {
 
 let showCheckpoint = (checkpoint, index) => {
   console.log(chalk.green('CHECKPOINT'), chalk.yellow(index + 1));
+  
+  _.map(checkpoint, function(value, property){
+    if(checkpoint.distance >= 1){
+      checkpoint.distance += 'm';
+    }
+  })
+  _.sortBy(checkpoint, ['distance']).reverse();
   _.forEach(checkpoint, function(value, property){
     if (checkpoint.hasOwnProperty(property)) {
       console.log(chalk.cyan(property.toUpperCase()), checkpoint[property]);
     }})
   console.log('\n');
 };
+
 
 let run = () => {
   let checkpoints = checkpointsService.getCheckpoints();
