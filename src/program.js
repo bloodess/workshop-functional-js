@@ -1,4 +1,5 @@
 let chalk = require('chalk');
+var _ = require("lodash");
 
 let checkpointsService = require('./staticCheckpoints');
 
@@ -19,18 +20,19 @@ let calculateDistanceWithRssi = rssi => {
 
 let transformCheckpoint = (checkpoint) => {
   if (checkpoint) {
+    var exo2 = checkpoint;
     // Get back essential properties
-    checkpoint.serviceData = checkpoint.advertisement.serviceData;
-    checkpoint.serviceUuids = checkpoint.advertisement.serviceUuids;
+    exo2.serviceData = exo2.advertisement.serviceData;
+    exo2.serviceUuids = exo2.advertisement.serviceUuids;
     // Transform data about distance
-    checkpoint.distance = calculateDistanceWithRssi(checkpoint.rssi);
+    exo2.distance = calculateDistanceWithRssi(exo2.rssi);
     // Clean uninteresting properties
-    delete checkpoint.id;
-    delete checkpoint.address;
-    delete checkpoint.addressType;
-    delete checkpoint.advertisement;
-    delete checkpoint.rssi;
-    delete checkpoint.services;
+    delete exo2.id;
+    delete exo2.address;
+    delete exo2.addressType;
+    delete exo2.advertisement;
+    delete exo2.rssi;
+    delete exo2.services;
     // Everything is ok
     return true;
   } else {
@@ -40,11 +42,10 @@ let transformCheckpoint = (checkpoint) => {
 
 let showCheckpoint = (checkpoint, index) => {
   console.log(chalk.green('CHECKPOINT'), chalk.yellow(index + 1));
-  for (var property in checkpoint) {
+  _.forEach(checkpoint, function(value, property){
     if (checkpoint.hasOwnProperty(property)) {
       console.log(chalk.cyan(property.toUpperCase()), checkpoint[property]);
-    }
-  }
+    }})
   console.log('\n');
 };
 

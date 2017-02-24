@@ -8,7 +8,7 @@ describe('Function transformCheckpoint', function() {
   it('Function transformCheckpoint without parameter should return false', function() {
     expect(transformCheckpoint()).to.be.false;
   });
-
+/*
 describe('Function transformCheckpoint', function(){
 	
 	it('the parameter should be mutated with the function transformCheckpoint', function(){
@@ -49,5 +49,5 @@ describe('Function transformCheckpoint', function(){
 	
 	})
 })
-
+*/
 });
