@@ -29,7 +29,7 @@ describe('Function transformCheckpoint', function(){
 		    rssi: -66,
 		    services: null,
 		    state: 'outofcontrol'
-			  })).to.eql({
+			  })).to.equal({
 			    id: 'whataw0nd3rful1d',
 			    uuid: 'whataw0nd3rful1d',
 			    address: 'unknown',
