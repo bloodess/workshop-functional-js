@@ -2,6 +2,25 @@
 
 let getCheckpoints = () => [
   {
+    id: 'whataw0nd3rful1d',
+    uuid: 'whataw0nd3rful1d',
+    address: 'unknown',
+    addressType: 'unknown',
+    connectable: true,
+    advertisement: {
+      localName: undefined,
+      txPowerLevel: undefined,
+      manufacturerData: undefined,
+      serviceData: [],
+      serviceUuids: [ 'abcd' ]
+    },
+    rssi: -66,
+    services: null,
+    state: 'outofcontrol'
+  },
+
+
+  {
     id: 'ab6ce229c3484a9a9a464b332e000bdc',
     uuid: 'ab6ce229c3484a9a9a464b332e000bdc',
     address: 'unknown',
